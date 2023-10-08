@@ -1,0 +1,24 @@
+{
+  "name": "img-parser",
+  "version": "1.0.0",
+  "description": "A JavaScript library that parses the true mime type, size, and width of an image",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ljy1017010/img-parser.git"
+  },
+  "keywords": [
+    "mime",
+    "image",
+    "webp"
+  ],
+  "author": "ljy1017010",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ljy1017010/img-parser/issues"
+  },
+  "homepage": "https://github.com/ljy1017010/img-parser#readme"
+}
