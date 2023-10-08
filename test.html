@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test</title>
+  </head>
+
+  <body>
+    <input type="file" accept="image/*" onchange="handleChange(event)" />
+
+    <script type="module">
+      import ImageParse from './index.js'
+
+      window.ImageParse = ImageParse
+    </script>
+
+    <script>
+      function handleChange(e) {
+        const files = e.target.files
+
+        // 如果取消选择，则不执行
+        if (files.length === 0) return
+
+        const file = files[0]
+        const reader = new FileReader()
+        reader.readAsArrayBuffer(file)
+
+        reader.onload = function (e) {
+          const arrBf = e.target.result // ArrayBuffer
+          const typeArr = new Uint8Array(arrBf)
+
+          const { parseImg } = window.ImageParse
+          const result = parseImg(typeArr)
+
+          console.log(result)
+        }
+      }
+    </script>
+  </body>
+</html>
