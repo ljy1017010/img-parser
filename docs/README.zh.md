@@ -1,66 +1,66 @@
-English | [简体中文](./docs/README.zh.md)
+简体中文 | [English](../README.md)
 
 # img-parser
 
-A JavaScript library that parses the true mime type, size, width and height of an image
+一个解析图片的 JavaScript 库，通过读取图片为二进制数据，依照图片规范进行解析，获取图片的 mime、大小和高宽信息。
 
-## Supported image types
+可以在 Node.js 和浏览器中使用
+
+## 支持的文件类型
 
 - png
 - jpeg
 - webp
 - gif
 
-## Installation
+## 安装
 
 ```
 npm i img-parser
 ```
 
-## Examples
+## 示例
 
-Node.js
+Node.js 中
 
 ```
 import { parseImg, getMime } from 'img-parser'
 
-const fs = require('fs/promises')
-const path = require('path')
+import fs from 'fs/promises'
+import path from 'path'
 
 const imgUrl = path.join(__dirname, './image/test.png')
-const buff = await fs.readFile(imgUrl, { encoding: '' }) // Buffer
+const buff = await fs.readFile(imgUrl, { encoding: '' })
 
 const result = parseImg(buff)
-console.log(result)
 // => {mime: "image/png", size: 6219, width: 140, height: 32}
 
-const type = getMime(buff) // => 'image'
+const type = getMime(buff)
+// => 'image/png'
 
 ```
 
-Browser
+浏览器中
 
 ```
 import { parseImg, getMime } from 'img-parser'
 
 function handleChange(e) {
   const files = e.target.files
-
-  // 如果取消选择，则不执行
-  if (files.length === 0) return
-
   const file = files[0]
+
   const reader = new FileReader()
   reader.readAsArrayBuffer(file)
 
   reader.onload = function (e) {
-    const buf = e.target.result // ArrayBuffer
+    const buf = e.target.result
     const typeArr = new Uint8Array(buf)
 
     const result = parseImg(typeArr)
-
-    console.log(result)
     // => {mime: "image/png", size: 6219, width: 140, height: 32}
+
+    const type = getMime(buff)
+    // => 'image/png'
   }
 }
 ```
