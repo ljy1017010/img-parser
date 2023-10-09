@@ -2,11 +2,11 @@
 
 # img-parser
 
-一个解析图片的 JavaScript 库，通过读取图片为二进制数据，依照图片规范进行解析，获取图片的 mime、大小和高宽信息。
+解析图像的 JavaScript 库，通过读取图像为二进制数据，根据各种图像的规范，获取图像的 mime 类型、大小和高宽信息。
 
-可以在 Node.js 和浏览器中使用
+可在 Node.js 和浏览器中使用
 
-## 支持的文件类型
+## 支持的图片类型
 
 - png
 - jpeg
@@ -21,7 +21,7 @@ npm i img-parser
 
 ## 示例
 
-Node.js 中
+Node.js
 
 ```
 import { parseImg, getMime } from 'img-parser'
@@ -40,7 +40,7 @@ const type = getMime(buff)
 
 ```
 
-浏览器中
+Browser
 
 ```
 import { parseImg, getMime } from 'img-parser'
@@ -64,3 +64,17 @@ function handleChange(e) {
   }
 }
 ```
+
+## API
+
+### parseImg(input)
+
+#### input
+
+Type: `Buffer | Uint8Array`
+
+返回一个 object 对象(包括 mime, size, width and height 属性)
+
+### getMime(input)
+
+返回一个字符串（比如：'image/png')

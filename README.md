@@ -1,40 +1,42 @@
-English | [简体中文](./docs/README.zh.md)
+English | [简体中文](../docs/README.zh.md)
 
 # img-parser
 
-A JavaScript library that parses the true mime type, size, width and height of an image
+JavaScript library for Parsing image, by reading the image as binary data, according to the specifications of various kinds of images, get the image mime type, size and height width information.
 
-## Supported image types
+Available in Node.js and in the browser
+
+## Supported file types
 
 - png
 - jpeg
 - webp
 - gif
 
-## Installation
+## Install
 
 ```
 npm i img-parser
 ```
 
-## Examples
+## Example
 
 Node.js
 
 ```
 import { parseImg, getMime } from 'img-parser'
 
-const fs = require('fs/promises')
-const path = require('path')
+import fs from 'fs/promises'
+import path from 'path'
 
 const imgUrl = path.join(__dirname, './image/test.png')
-const buff = await fs.readFile(imgUrl, { encoding: '' }) // Buffer
+const buff = await fs.readFile(imgUrl, { encoding: '' })
 
 const result = parseImg(buff)
-console.log(result)
 // => {mime: "image/png", size: 6219, width: 140, height: 32}
 
-const type = getMime(buff) // => 'image'
+const type = getMime(buff)
+// => 'image/png'
 
 ```
 
@@ -45,22 +47,34 @@ import { parseImg, getMime } from 'img-parser'
 
 function handleChange(e) {
   const files = e.target.files
-
-  // 如果取消选择，则不执行
-  if (files.length === 0) return
-
   const file = files[0]
+
   const reader = new FileReader()
   reader.readAsArrayBuffer(file)
 
   reader.onload = function (e) {
-    const buf = e.target.result // ArrayBuffer
+    const buf = e.target.result
     const typeArr = new Uint8Array(buf)
 
     const result = parseImg(typeArr)
-
-    console.log(result)
     // => {mime: "image/png", size: 6219, width: 140, height: 32}
+
+    const type = getMime(buff)
+    // => 'image/png'
   }
 }
 ```
+
+## API
+
+### parseImg(input)
+
+#### input
+
+Type: `Buffer | Uint8Array`
+
+return an object(includes mime, size, width and height infomation)
+
+### getMime(input)
+
+return a string（for example：'image/png')
