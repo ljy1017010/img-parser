@@ -2,7 +2,7 @@ English | [简体中文](./docs/README.zh.md)
 
 # img-parser
 
-JavaScript library for Parsing image, by reading the image as binary data, according to the specifications of various kinds of images, get the image mime type, size and height width information.
+A JavaScript library for parsing images. It obtains the mime type, size, and height-width information of the image according to the specifications of various types of images.
 
 Available in Node.js and in the browser
 
@@ -15,7 +15,7 @@ Available in Node.js and in the browser
 
 ## Install
 
-```
+```sh
 npm i img-parser
 ```
 
@@ -23,7 +23,7 @@ npm i img-parser
 
 Node.js
 
-```
+```javascript
 import { parseImg, getMime } from 'img-parser'
 
 import fs from 'fs/promises'
@@ -37,12 +37,19 @@ const result = parseImg(buff)
 
 const type = getMime(buff)
 // => 'image/png'
-
 ```
 
 Browser
 
+- html
+
+```html
+<input type="file" accept="image/*" onchange="handleChange(event)" />
 ```
+
+- javascript
+
+```javascript
 import { parseImg, getMime } from 'img-parser'
 
 function handleChange(e) {

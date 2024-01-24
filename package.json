@@ -1,7 +1,7 @@
 {
   "name": "img-parser",
-  "version": "1.0.1",
-  "description": "A JavaScript library that parses the true mime type, size, and width of an image",
+  "version": "1.0.2",
+  "description": "A JavaScript library for parsing images",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
